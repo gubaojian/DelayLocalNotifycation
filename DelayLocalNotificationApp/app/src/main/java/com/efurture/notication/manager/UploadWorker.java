@@ -1,6 +1,8 @@
 package com.efurture.notication.manager;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,8 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 public class UploadWorker extends Worker {
+
+    private Handler mMainHandler = new Handler(Looper.getMainLooper());
 
     public UploadWorker( Context context, WorkerParameters params) {
         super(context, params);
@@ -20,6 +24,14 @@ public class UploadWorker extends Worker {
         //uploadImages();
         Log.e("DelayNotification", "DelayNotification Worker " + Thread.currentThread()
         + "  getName " + Thread.currentThread().getName());
+
+        mMainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("DelayNotification");
+                NotificationHelper.sendNotificaiton(getApplicationContext(), "Hello", "World");
+            }
+        });
 
         // Indicate whether the work finished successfully with the Result
         return Result.success();

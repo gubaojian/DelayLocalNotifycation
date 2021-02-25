@@ -8,6 +8,7 @@ import androidx.work.WorkRequest;
 import android.os.Bundle;
 import android.view.View;
 
+import com.efurture.notication.manager.NotificationHelper;
 import com.efurture.notication.manager.UploadWorker;
 
 import java.util.concurrent.TimeUnit;
@@ -26,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 WorkRequest uploadWorkRequest = new OneTimeWorkRequest.Builder(UploadWorker.class).setInitialDelay(10000, TimeUnit.MILLISECONDS).build();
                 WorkManager.getInstance(getApplication()).enqueue(uploadWorkRequest);
+
+
             }
         });
+
 
 
     }
