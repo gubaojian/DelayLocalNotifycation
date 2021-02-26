@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.media.AudioAttributes;
+import android.media.RingtoneManager;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -48,9 +49,15 @@ public class NotificationHelper {
         NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle().bigText(content).setBigContentTitle(title);
 
 
+        Uri alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+
+
         builder.setStyle(bigTextStyle);
-        //builder.setSound(sound);
+        builder.setSound(sound);
         builder.setAutoCancel(true);
+
+        //builder.setSound(alertSound);
 
         Notification notification = builder.build();
         compat.notify(nextId, notification);
