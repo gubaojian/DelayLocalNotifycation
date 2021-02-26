@@ -29,7 +29,9 @@ public class UploadWorker extends Worker {
             @Override
             public void run() {
                 System.out.println("DelayNotification");
-                NotificationHelper.sendNotificaiton(getApplicationContext(), "Hello", "World");
+                String title = "排班通知";
+                String content = "排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知，排班检查通知";
+                NotificationHelper.sendNotificaiton(getApplicationContext(), title, content);
             }
         });
 
